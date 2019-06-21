@@ -1,71 +1,15 @@
-
-
-
-IPv6マイグレーション技術の
-国内標準プロビジョニング方式
-
+IPv6マイグレーション技術の国内標準プロビジョニング方式
 
 【第0.1版】
 
-
-
-
-
-
-
-
-
-
-
 2019年3月27日
 
-
-
-IPv6普及・高度化推進協議会
-IPv4/IPv6共存WG	　IPv6家庭用ルータSWG
+IPv6普及・高度化推進協議会 IPv4/IPv6共存WG IPv6家庭用ルータSWG
 
 
 変更履歴
-版
-改版日
-摘要
-0.1
-2019年3月27日
-Draft 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+版 改版日 摘要
+0.1 2019年3月27日 Draft
 
 
 目次
@@ -81,7 +25,9 @@ Draft
 3.6	プロビジョニングサーバへのアクセスシーケンス	9
 4	検討メンバー(TBD)	10
 
+
 本文書作成の背景と目的
+
 日本国内において、NTT東西によるフレッツ光ネクストのNGN IPv6契約者数は、1,200万契約を超過しており、NGN IPv6普及率も57.8%となっており、IPv6サービスの本格的な普及が進んでいる。(2018年12月時点)　
 
 IPv6サービスの普及と同時に、各VNE事業者によるIPv6マイグレーション技術を使用したIPv4 over IPv6サービスの普及が加速しているが、各VNE事業者が採用しているIPv6マイグレーション技術およびプロビジョニング方式が各社独自となっている為、今後、新規にIPv4 over IPv6サービスを提供予定のVNE事業者においても、独自方式で提供される可能性が高く、各社が独自方式を採用することによる問題が懸念される。
@@ -96,367 +42,301 @@ IPv6サービスの普及と同時に、各VNE事業者によるIPv6マイグレ
 
 
 
-
-
 ネットワーク構成 (TBD)
 
-
-
 VNEにて必要となる設備
-	•	DNSキャッシュサーバ(特定FQDNのリソースレコードに対するDNS設定)
-	•	本方式に準拠したプロビジョニングサーバ(http or https) 
-	•	IPv4 over IPv6センタ装置(IPv6マイグレーション技術対応) 
 
-
-
-
-
-
-
-
+  • DNSキャッシュサーバ(特定FQDNのリソースレコードに対するDNS設定)
+  • 本方式に準拠したプロビジョニングサーバ(http or https)
+  • IPv4 over IPv6センタ装置(IPv6マイグレーション技術対応)
 
 
 
 プロビジョニング方式仕様
+
 プロビジョニングサーバの発見方法
+
 プロビジョニングサーバの発見は以下FQDNに対するDNSの名前解決にて行う。
-example.v6pc.jp (TBD)
+
+    example.v6pc.jp (TBD)
 
 プロビジョニングサーバのIPv6アドレスは、AAAAリソースレコードにより取得し、プロビジョニングサーバがサポートする接続方式をTXTリソースレコードにより取得する。
 
 ※上記、特定FQDNの取得、運用管理をどの組織にて行うかについては要議論
 
 ※TXTリソースレコードにおける具体フォーマットについては検討中。
-　例．example.v6pc.jp.  	IN	TXT	“http” 
-example.v6pc.jp. 	IN	TXT	“https-private” 
-example.v6pc.jp. 	IN	TXT	“https-ca-certified” 
 
-
-
-
-
-
-
-
-
-
-
-
-
+　例．example.v6pc.jp.  IN  TXT  “http”
+      example.v6pc.jp. 	IN  TXT  “https-private”
+      example.v6pc.jp. 	IN  TXT  “https-ca-certified”
 
 
 プロビジョニングサーバへの接続手段
+
 プロビジョニングサーバへの接続手段は、VNE事業者にて以下の中から選択可能である。
-	•	http
-	•	https(自己署名のサーバ証明書を使用)
-	•	https(認証局発行のサーバ証明書を使用)
+
+ • http
+ • https(自己署名のサーバ証明書を使用)
+ • https(認証局発行のサーバ証明書を使用)
 
 各々の接続手段におけるメリット、デメリットを以下に示す。
 
 接続手段
-メリット
-デメリット
-備考
+  メリット
+  デメリット
+  備考
+
 http
-1) サーバ証明書が不要
-1) 通信内容が暗号化されないため、通信内容を容易に解読することが可能。
-有効だが、安全性の検討が必要。
-※公開情報を配布するのであれば考慮不要。
-https 自己署名のサーバ証明書を使用
-※証明書検証を
-行わない
-1) サーバ証明書の管理は不要
-2) 通信内容が暗号化される。
-1) サーバ証明書をクライアント側で検証できない。
-2) サーバのなりすまし防止ができない為、送信情報が解読される可能性あり。
-運用コストが低い。
-https 自己署名のサーバ証明書を使用
-※証明書検証を
-行う
-1) 通信内容が暗号化される。
-2) サーバ証明書をクライアント
-側で検証可能。 3) サーバのなりすまし防止が　　
-可能。
-	•	サーバ証明書の管理(有効期限)が必要。
-	•	クライアント側にCA証明書が必要。※CPEで証明書を保持する必要あり。
-安全性は確保できるが危殆化のリスクあり。各社のCA証明書の管理コスト発生。
-https 認証局発行のサーバ証明書を使用
-1) 通信内容が暗号化される。 2) サーバ証明書をクライア ント
-側で検証可能。 3) サーバのなりすまし防止が　
-可能。
-	•	サーバ証明書の管理(有効期限、費用等)が必要。
-	•	クライアント側にCA証明書が必要。
+  1) サーバ証明書が不要
+  1) 通信内容が暗号化されないため、通信内容を容易に解読することが可能。
+  有効だが、安全性の検討が必要。
+  ※公開情報を配布するのであれば考慮不要。
 
-理想的だが、運用上の課題(運用によってはサービス停止リスク)がある。 サーバ証明書をクライアント側でチェックしない場合、自己署名のサーバ証明書使用と同様のデメリットあり。
+https 自己署名のサーバ証明書を使用 ※証明書検証を行わない
+  1) サーバ証明書の管理は不要
+  2) 通信内容が暗号化される。
+  1) サーバ証明書をクライアント側で検証できない。
+  2) サーバのなりすまし防止ができない為、送信情報が解読される可能性あり。
+  運用コストが低い。
 
+https 自己署名のサーバ証明書を使用 ※証明書検証を行う
+  1) 通信内容が暗号化される。
+  2) サーバ証明書をクライアント側で検証可能。
+  3) サーバのなりすまし防止が可能。
+  • サーバ証明書の管理(有効期限)が必要。
+  • クライアント側にCA証明書が必要。※CPEで証明書を保持する必要あり。
+  安全性は確保できるが危殆化のリスクあり。各社のCA証明書の管理コスト発生。
 
-
-
+https 認証局発行のサーバ証明書を使用
+  1) 通信内容が暗号化される。
+  2) サーバ証明書をクライアント側で検証可能。
+  3) サーバのなりすまし防止が可能。
+  • サーバ証明書の管理(有効期限、費用等)が必要。
+  • クライアント側にCA証明書が必要。
+  理想的だが、運用上の課題(運用によってはサービス停止リスク)がある。
+  サーバ証明書をクライアント側でチェックしない場合、自己署名のサーバ証明書使用と同様のデメリットあり。
 
 
 データフォーマット（プロビジョニングサーバへ送信）(TBD)
+
 以下の情報をCPEからプロビジョニングサーバへ送信する。
 送信タイミングについては、「プロビジョニングサーバへのアクセスシーケンス」を参照のこと。
-・ベンダID ※ログが残るメリットがある為、GETでの処理とする ・製品名 ・ファームウェアバージョン ・サポートしているマイグレーション技術のリスト
+  ・ベンダID ※ログが残るメリットがある為、GETでの処理とする
+  ・製品名
+  ・ファームウェアバージョン
+  ・サポートしているマイグレーション技術のリスト
+
 
 データフォーマット（プロビジョニングサーバから受信）(TBD)
+
 プロビジョニング情報を格納するデータフォーマットは、RFC7598にて定義されているフォーマットをベースとしたJSONフォーマットとし、不足するパラメータ等については独自に追加を行っている。以下にデータフォーマットを示す。
 
-Object
-Value
+Object Value
+
 IP4OV6ProvisioningConfig
-IPv4 over IPv6プロビジョニングデータ（グループ)
+  IPv4 over IPv6プロビジョニングデータ（グループ)
 　
 IP4OV6Method
-MAP-E : MAP-Eを使用 MAP-T : MAP-Tを使用 DS-Lite : DS-Liteを使用 LW4o6 : Lightweight IPv4 over IPv6を使用 464XLAT : 464XLATを使用 IPv6-Only : IPv4 over IPv6サービス未サポート 　　　　 　　　※IPv6 Nativeでのインターネットサービス使用
-時のみ。他のIPv4 over IPv6サービスがある
-場合は、使用禁止
+  MAP-E : MAP-Eを使用
+  MAP-T : MAP-Tを使用
+  DS-Lite : DS-Liteを使用
+  LW4o6 : Lightweight IPv4 over IPv6を使用
+  464XLAT : 464XLATを使用
+  IPv6-Only : IPv4 over IPv6サービス未サポート ※IPv6 Nativeでのインターネットサービス使用時のみ。他のIPv4 over IPv6サービスがある場合は、使用禁止
 
-　
 IP4OV6ServiceProviderName
-NGN上でのサービスではVNE名 JPNE, IMF, NTTコミュニケーションズ, Biglobe等 NGN以外でのサービスではISP名 au、J-COM等
+  NGN上でのサービスではVNE名
+  JPNE, IMF, NTTコミュニケーションズ, Biglobe等 NGN以外でのサービスではISP名 au、J-COM等
 　
 IP4OV6VNEServiceName
-IPv4 over IPv6 VNEサービス名 NGNが指定のサービス名を設定する。 NGN NGN以外でのサービスの場合は、設定しないこと。
+  IPv4 over IPv6 VNEサービス名
+  NGNが指定のサービス名を設定する。
+  NGN
+  NGN以外でのサービスの場合は、設定しないこと。
 　
-IP4OV6ISPServiceName オプション
-IPv4 over IPv6 ISPサービス名 IP4OV6VNEServiceName < IP4OV6ISPServiceNameの関係にすること。
+IP4OV6ISPServiceName オプション
+  IPv4 over IPv6 ISPサービス名
+  IP4OV6VNEServiceName < IP4OV6ISPServiceNameの関係にすること。
 　
 IP4OV6ISPTTL
-TTL : プロビ情報の有効時間(分)
+  TTL : プロビ情報の有効時間(分)
 　
-IP4OV6MultiSessionCount オプション
-IPv4 over IPv6での接続を行う場合にマルチセッションを許すかのフラグ 0 : 無制限 1 : 1セッション x : 2以上の数値、マルチ(xセッション)での構築を許容する
+IP4OV6MultiSessionCount オプション
+  IPv4 over IPv6での接続を行う場合にマルチセッションを許すかのフラグ
+  0 : 無制限
+  1 : 1セッション
+  x : 2以上の数値、マルチ(xセッション)での構築を許容する
 
-　
 MAP-E
-MAP-Eプロビジョニングデータ(グループ)
+  MAP-Eプロビジョニングデータ(グループ)
 　
+MAP-ESupportVersion オプション
+  0 or 項目なし : draft-ietf-softwire-map-03
+  1 : RFC7597
 　
-MAP-ESupportVersion オプション
-0 or 項目なし : draft-ietf-softwire-map-03 1 : RFC7597
-　
-　
-MAP-EIPv4Fixed オプション
-0 or 項目なし : MAP-E自動設定 1 : MAP-E IPv4固定アドレス有効      ※MAPルールが同時に設定されている場合、
-CPEでどちらを使用するか選択すること
-
+MAP-EIPv4Fixed オプション
+  0 or 項目なし : MAP-E自動設定
+  1 : MAP-E IPv4固定アドレス有効
+  ※MAPルールが同時に設定されている場合、CPEでどちらを使用するか選択すること
 
 MAP-ETrafficMode
-0 or 項目なし : Hub-and-spoke mode (CE - BR only) 1 : Mesh mode (CE - BR and CE - CE)
+  0 or 項目なし : Hub-and-spoke mode (CE - BR only)
+  1 : Mesh mode (CE - BR and CE - CE)
 　
-　
-MAP-EFixedBRAddress オプション
-MAP-E BR IPv6アドレス
-　
+MAP-EFixedBRAddress オプション
+  MAP-E BR IPv6アドレス
 　
 MAP-ERules
-MAP-Eのルール(グループ) ルールの最大数は200ルール
-　
-　
+  MAP-Eのルール(グループ) ルールの最大数は200ルール
 　
 MAP-EDMRAddress
-DMR(BR)のアドレス
-　
-　
+  DMR(BR)のアドレス
 　
 MAP-EDMRPrefixLength
-DMR(BR)のプリフィックス長
-　
-　
+  DMR(BR)のプリフィックス長
 　
 MAP-EFMRIPv6Prefix
-FMRのIPv6プリフィックス
-　
-　
+  FMRのIPv6プリフィックス
 　
 MAP-EIPv6PrefixLength
-FMRのIPv6プリフィックス長
-　
-　
+  FMRのIPv6プリフィックス長
 　
 MAP-EIPv4Prefix
-FMRのIPv4プリフィックス
-　
-　
+  FMRのIPv4プリフィックス
 　
 MAP-EIPv4PrefixLength
-FMRのIPv4プリフィックス長
-　
-　
+  FMR の IPv4 プリフィックス長
 　
 MAP-EEABitLength
-EAビット長
-　
-　
+  EAビット長
 　
 MAP-EPSIDOffset
-PSIDオフセット
+  PSID オフセット
 　
 DS-Lite
-DS-Liteプロビジョニングデータ(グループ)
-　
+  DS-Lite プロビジョニングデータ(グループ)
 　
 DS-LiteAFTRFQDN
-DS-Lite AFTRのFQDN
-　
+  DS-Lite AFTR の FQDN
 　
 DS-LiteAFTRAddress
-DS-Lite AFTRアドレス
+  DS-Lite AFTR アドレス
 　
 LW4o6
-lw4o6プロビジョニングデータ(グループ)
-　
+  lw4o6プロビジョニングデータ(グループ)
 　
 LW4o6Rules
-LW4o6のルール(グループ)
-　
+  LW4o6のルール(グループ)
 　
 LWAFTRFQDN
-lwAFTRのFQDN
-　
+  lwAFTRのFQDN
 　
 LWAFTRAddress
-lwAFTRアドレス
-　
+  lwAFTRアドレス
 　
 V4V6BINDV4ADDRESS
-IPv4 external (public) address for NAPT44
-　
+  IPv4 external (public) address for NAPT44
 　
 V4V6BINDPSID
-Restricted port set to use for NAPT44
-　
+  Restricted port set to use for NAPT44
 　
 V4V6BINDV6Prefix
-Operator Assigned IPv6 Prefix
+  Operator Assigned IPv6 Prefix
 　
 MAP-T
-MAP-Tプロビジョニングデータ(グループ)
-　
+  MAP-Tプロビジョニングデータ(グループ)
 　
 MAP-TRules
-MAP-Tのルール(グループ) ルールの最大数は200ルール
-　
-　
+  MAP-Tのルール(グループ) ルールの最大数は200ルール
 　
 MAP-TDMRAddress
-DMRのアドレス
-　
-　
+  DMRのアドレス
 　
 MAP-TDMRPrefixLength
-DMRのプリフィックス長
-　
-　
+  DMRのプリフィックス長
 　
 MAP-TFMRIPv6Prefix
-FMRのIPv6プリフィックス
-　
-　
+  FMRのIPv6プリフィックス
 　
 MAP-TIPv6PrefixLength
-FMRのIPv6プリフィックス長
-　
-　
+  FMRのIPv6プリフィックス長
 　
 MAP-TIPv4Prefix
-FMRのIPv4プリフィックス
-　
-　
+  FMRのIPv4プリフィックス
 　
 MAP-TIPv4PrefixLength
-FMRのIPv4プリフィックス長
-　
-　
+  FMRのIPv4プリフィックス長
 　
 MAP-TEABitLength
-EAビット長
-　
-　
+  EAビット長
 　
 MAP-TPSIDOffset
-PSIDオフセット
+  PSIDオフセット
 　
 464XLAT
-464XLATプロビジョニングデータ(グループ)
-　
+  464XLATプロビジョニングデータ(グループ)
 　
 464XLATRules
-NAT64 Prefix
+  NAT64 Prefix
 　
-FixedIPv4Address オプション
-IPv4固定アドレス
+FixedIPv4Address オプション
+  IPv4固定アドレス
 　
-FixedIPPrefix オプション
-IPv4固定アドレスプリフィックス長
-
+FixedIPPrefix オプション
+  IPv4固定アドレスプリフィックス長
 
 
 プロビジョニングデータの管理
+
 プロビジョニングサーバから取得した各種パラメータ情報については、原則として、電源OFFもしくはリブート時に削除される。
 取得したパラメータ情報の管理、更新処理については次項の「プロビジョニングサーバへのアクセスシーケンス」を参照のこと。
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 プロビジョニングサーバへのアクセスシーケンス
-以下にプロビジョニングサーバへのアクセスシーケンスおよび状態遷移を示す。
 
+以下にプロビジョニングサーバへのアクセスシーケンスおよび状態遷移を示す。
 
 
 
 検討メンバー(TBD)
 下記に検討メンバーを示す．所属の50音順に従っている．
-所属
-氏名
+所属 氏名
+
 エヌ・ティ・ティ・コミュニケーションズ株式会社
 藤崎 智宏（部会長）
+
 ＮＥＣプラットフォームズ株式会社
 川島 正伸（部会長）
+
 株式会社インターネットイニシアティブ
 佐原 具幸（部会長）
-株式会社アイ・オー・データ機器
-田畑 敬司 
-株式会社アイ・オー・データ機器
-吉田 幸男 
-株式会社ネクステック
-大石 憲且 
-ＮＥＣプラットフォームズ株式会社
-大石 智雄 
-ＮＥＣプラットフォームズ株式会社
-前田 康貴 
-ＮＥＣプラットフォームズ株式会社
-中村 敏夫 
-株式会社バッファロー
-山田 大輔 
-株式会社バッファロー
-稲田 哲也 
-ヤマハ株式会社
-下薗 大樹 
-ヤマハ株式会社
-太田 将博 
 
+株式会社アイ・オー・データ機器
+田畑 敬司
+
+株式会社アイ・オー・データ機器
+吉田 幸男
+
+株式会社ネクステック
+大石 憲且
+
+ＮＥＣプラットフォームズ株式会社
+大石 智雄
+
+ＮＥＣプラットフォームズ株式会社
+前田 康貴
+
+ＮＥＣプラットフォームズ株式会社
+中村 敏夫
+
+株式会社バッファロー
+山田 大輔
+
+株式会社バッファロー
+稲田 哲也
+
+ヤマハ株式会社
+下薗 大樹
+
+ヤマハ株式会社
+太田 将博
