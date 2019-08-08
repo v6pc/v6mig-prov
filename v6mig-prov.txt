@@ -196,12 +196,6 @@ IP4OV6ISPServiceName オプション
 IP4OV6ISPTTL
   TTL : プロビ情報の有効時間(分)
 　
-IP4OV6MultiSessionCount オプション
-  IPv4 over IPv6での接続を行う場合にマルチセッションを許すかのフラグ
-  0 : 無制限
-  1 : 1セッション
-  x : 2以上の数値、マルチ(xセッション)での構築を許容する
-
 MAP-E
   MAP-Eプロビジョニングデータ(グループ)
 　
