@@ -164,6 +164,67 @@ d) https 認証局発行のサーバ証明書を使用
 いるフォーマットをベースとしたJSONフォーマットとし、不足するパラメータ等
 については独自に追加を行っている。以下にデータフォーマットを示す。
 
+{
+  "IP4OV6ProvisioningConfig": {
+    "IP4OV6Method": "MAP-E",
+    "IP4OV6ServiceProviderName": "A VNE",
+    "IP4OV6VNEServiceName": "Highspeed 4over6",
+    "IP4OV6ISPServiceName": "ISP-A",
+    "IP4OV6ISPTTL": 1440,
+    "IP4OV6MultiSessionCount": 1,
+    "MAP-E": {
+      "MAP-ESupportVersion": 0,
+      "MAP-EIPv4Fixed": 0,
+      "MAP-ETrafficMode": 1,
+      "MAP-EFixedBRAddress": "2001:db8:1::1",
+      "MAP-ERules": [
+        {
+          "MAP-EDMRAddress": "2001:db8:1::1",
+          "MAP-EDMRPrefixLength": 128,
+          "MAP-EFMRIPv6Prefix": "2001:db8:1:2::",
+          "MAP-EIPv6PrefixLength": 64,
+          "MAP-EIPv4Prefix": "203.0.113.0",
+          "MAP-EIPv4PrefixLength": 24,
+          "MAP-EEABitLength": 12,
+          "MAP-EPSIDOffset": 4
+        }
+      ]
+    },
+    "DS-Lite": {
+      "DS-LiteAFTRFQDN": "aftr.example.net",
+      "DS-LiteAFTRAddress": "2001:db8:2::1"
+    },
+    "LW4o6": {
+      "LW4o6Rules": {
+      },
+      "LWAFTRFQDN": "lwaftr.example.net",
+      "LWAFTRAddress": "2001:db8:3::1",
+      "V4V6BINDV4ADDRESS": "203.0.113.16",
+      "V4V6BINDPSID": 4,
+      "V4V6BINDV6Prefix": "2001:db8:3:100::/56"
+    },
+    "MAP-T": {
+      "MAP-TRules": [
+        {
+          "MAP-TDMRAddress": "2001:db8:5::",
+          "MAP-TDMRPrefixLength": 64,
+          "MAP-TFMRIPv6Prefix": "2001:db8:5:100::",
+          "MAP-TIPv6PrefixLength": 56,
+          "MAP-TIPv4Prefix": "203.0.113.32",
+          "MAP-TIPv4PrefixLength": 28,
+          "MAP-TEABitLength": 8,
+          "MAP-TPSIDOffset": 4
+        }
+      ]
+    },
+    "464XLAT": {
+      "464XLATRules": "2001:db8:6::/64"
+    }
+  },
+  "FixedIPv4Address": "203.0.113.48",
+  "FixedIPPrefix": 28
+}
+
 Object Value
 
 IP4OV6ProvisioningConfig
