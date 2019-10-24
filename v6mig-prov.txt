@@ -224,8 +224,14 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
       "464XLATRules": "2001:db8:6::/64"
     }
   },
-  "FixedIPv4Address": "203.0.113.48",
-  "FixedIPPrefix": 28
+  "IPIP": [
+    {
+      "IPIPLocalAddress": "2001:db8:7:100::7",
+      "IPIPRemoteAddress": "2001:db8:7::1",
+      "IPIPIPv4Address": "203.0.113.0",
+      "IPIPIPv4Prefix": 29
+    }
+  ]
 }
 
 Object Value
@@ -380,11 +386,17 @@ MAP-TPSIDOffset
 464XLATRules
   NAT64 Prefix
 　
-FixedIPv4Address オプション
-  IPv4固定アドレス
-　
-FixedIPPrefix オプション
-  IPv4固定アドレスプリフィックス長
+IPIPLocalAddress
+  IPIPトンネルの送信元IPv6アドレス
+
+IPIPRemoteAddress
+  IPIPトンネルの宛先IPv6アドレス
+
+IPIPIPv4Address
+  IPIPトンネルのIPv4固定アドレス
+
+IPIPIPv4Prefix
+  IPIPトンネルのIPv4固定アドレスのプレフィックス長
 
 
 3.5.  プロビジョニングデータの管理
