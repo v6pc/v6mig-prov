@@ -274,10 +274,15 @@ MAP-ETrafficMode
 　
 MAP-EFixedBRAddress オプション
   MAP-E BR IPv6アドレス
-　
+
 MAP-ERules
-  MAP-Eのルール(グループ) ルールの最大数は200ルール
-　
+  MAP-Eのルール(グループ)
+
+  - Hub-Spoke/Meshモード時ともに、フォーマットとしては256ルールを受け入れること(MUST)
+  - Hub-Spokeモード時は、ルールの最大数は256ルールを受け入れること。(MUST)
+  - 動作要件として、Meshモード時は256ルールで動作すること。(SHOULD)
+  　(※性能要件の妥当性はベンダ次第)
+
 MAP-EDMRAddress
   DMR(BR)のアドレス
 　
