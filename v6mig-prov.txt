@@ -173,7 +173,7 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
     "IP4OV6ServiceProviderName": "A VNE",
     "IP4OV6VNEServiceName": "Highspeed 4over6",
     "IP4OV6ISPServiceName": "ISP-A",
-    "IP4OV6ISPTTL": 1440,
+    "IP4OV6ISPTTL": 86400,
     "PriorityConfig": [ "464XLAT", "MAP-E", "DS-Lite" ],
     "MAP-E": {
       "MAP-ESupportVersion": 0,
@@ -264,7 +264,7 @@ IP4OV6ISPServiceName オプション
   IP4OV6VNEServiceName < IP4OV6ISPServiceNameの関係にすること。
 　
 IP4OV6ISPTTL
-  TTL : プロビ情報の有効時間(分)
+  TTL : プロビ情報の有効期間。単位は秒。
 　
 PriorityConfig
   優先度設定
