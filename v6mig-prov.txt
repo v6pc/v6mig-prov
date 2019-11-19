@@ -272,7 +272,7 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
         {
           "MAP-TDMRAddress": "2001:db8:5::",
           "MAP-TDMRPrefixLength": 64,
-          "MAP-TFMRIPv6Prefix": "2001:db8:5:100::",
+          "MAP-TFMRIPv6Prefix": "2001:db8:5:100::"
           "MAP-TIPv6PrefixLength": 56,
           "MAP-TIPv4Prefix": "203.0.113.32",
           "MAP-TIPv4PrefixLength": 28,
