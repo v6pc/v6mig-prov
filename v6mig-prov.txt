@@ -240,9 +240,7 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
     "PriorityConfig": [ "464XLAT", "MAP-E", "DS-Lite" ],
     "MAP-E": {
       "MAP-ESupportVersion": 0,
-      "MAP-EIPv4Fixed": 0,
       "MAP-ETrafficMode": 1,
-      "MAP-EFixedBRAddress": "2001:db8:1::1",
       "MAP-ERules": [
         {
           "MAP-EDMRAddress": "2001:db8:1::1",
@@ -339,18 +337,10 @@ MAP-ESupportVersion オプション
   0 or 項目なし : draft-ietf-softwire-map-03
   1 : RFC7597
 　
-MAP-EIPv4Fixed オプション
-  0 or 項目なし : MAP-E自動設定
-  1 : MAP-E IPv4固定アドレス有効
-  ※MAPルールが同時に設定されている場合、CPEでどちらを使用するか選択すること
-
 MAP-ETrafficMode
   0 or 項目なし : Hub-and-spoke mode (CE - BR only)
   1 : Mesh mode (CE - BR and CE - CE)
 　
-MAP-EFixedBRAddress オプション
-  MAP-E BR IPv6アドレス
-
 MAP-ERules
   MAP-Eのルール(グループ)
 
