@@ -1,0 +1,13 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: json syntax check
+      run: sed -ne '/^{/,/^}/p' < v6mig-prov.txt | jq . >/dev/null
