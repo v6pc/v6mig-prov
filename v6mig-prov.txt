@@ -333,10 +333,14 @@ MAP-E
   MAP-Eプロビジョニングデータ(グループ)
 　
 MAP-ESupportVersion オプション
+  MAP-E プロトコルのバージョンを表す。
+
   0 or 項目なし : draft-ietf-softwire-map-03
   1 : RFC7597
-　
+ 　
 MAP-ETrafficMode
+  RFC7597 に記載の MAP-E の Hub-and-spoke モードと Mesh モードを指定する。
+
   0 or 項目なし : Hub-and-spoke mode (CE - BR only)
   1 : Mesh mode (CE - BR and CE - CE)
 　
