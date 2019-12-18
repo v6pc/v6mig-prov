@@ -259,8 +259,7 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
     "LW4o6": {
       "LW4o6Rules": {
       },
-      "LWAFTRFQDN": "lwaftr.example.net",
-      "LWAFTRAddress": "2001:db8:3::1",
+      "lwaftr": "lwaftr.example.net",
       "V4V6BINDV4ADDRESS": "203.0.113.16",
       "V4V6BINDPSID": 4,
       "V4V6BINDV6Prefix": "2001:db8:3:100::/56"
@@ -384,12 +383,9 @@ LW4o6
 LW4o6Rules
   LW4o6のルール(グループ)。ルールの最大数は、活用事例が発生した際に定める。
 
-LWAFTRFQDN
-  lwAFTRのFQDN
-　
-LWAFTRAddress
-  lwAFTRアドレス
-　
+lwaftr
+  lwAFTR の DNS 名もしくは IPv6 アドレス。
+
 V4V6BINDV4ADDRESS
   IPv4 external (public) address for NAPT44
 　
