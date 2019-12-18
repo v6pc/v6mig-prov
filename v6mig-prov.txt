@@ -255,8 +255,7 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
       ]
     },
     "DS-Lite": {
-      "DS-LiteAFTRFQDN": "aftr.example.net",
-      "DS-LiteAFTRAddress": "2001:db8:2::1"
+      "aftr": "aftr.example.net"
     },
     "LW4o6": {
       "LW4o6Rules": {
@@ -376,12 +375,9 @@ MAP-EPSIDOffset
 DS-Lite
   DS-Lite プロビジョニングデータ(グループ)
 　
-DS-LiteAFTRFQDN
-  DS-Lite AFTR の FQDN
-　
-DS-LiteAFTRAddress
-  DS-Lite AFTR アドレス
-　
+aftr
+  DS-Lite AFTR の DNS 名もしくは IPv6 アドレス。
+
 LW4o6
   lw4o6プロビジョニングデータ(グループ)
 　
