@@ -384,10 +384,10 @@ DS-LiteAFTRAddress
 　
 LW4o6
   lw4o6プロビジョニングデータ(グループ)
-　
+
 LW4o6Rules
-  LW4o6のルール(グループ)
-　
+  LW4o6のルール(グループ)。ルールの最大数は、活用事例が発生した際に定める。
+
 LWAFTRFQDN
   lwAFTRのFQDN
 　
