@@ -280,7 +280,7 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
       ]
     },
     "464XLAT": {
-      "464XLATRules": "2001:db8:6::/64"
+      "nat64prefix": "2001:db8:6::/96"
     }
   },
   "IPIP": [
@@ -428,13 +428,13 @@ MAP-TEABitLength
 　
 MAP-TPSIDOffset
   PSIDオフセット
-　
+
 464XLAT
   464XLATプロビジョニングデータ(グループ)
-　
-464XLATRules
-  NAT64 Prefix
-　
+
+nat64prefix
+  NAT64 プレフィックス。
+
 IPIPLocalAddress
   IPIPトンネルの送信元IPv6アドレス
 
