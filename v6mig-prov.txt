@@ -231,55 +231,53 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
 以下にデータフォーマットを示す。
 
 {
-  "IP4OV6ProvisioningConfig": {
-    "IP4OV6ServiceProviderName": "A VNE",
-    "IP4OV6VNEServiceName": "Highspeed 4over6",
-    "IP4OV6ISPServiceName": "ISP-A",
-    "IP4OV6ISPTTL": 86400,
-    "PriorityConfig": [ "464XLAT", "MAP-E", "DS-Lite" ],
-    "MAP-E": {
-      "MAP-ESupportVersion": 0,
-      "MAP-ETrafficMode": 1,
-      "MAP-EBRAddress": "2001:db8:1::1",
-      "MAP-ERules": [
-        {
-          "MAP-EFMRIPv6Prefix": "2001:db8:1:2::",
-          "MAP-EIPv6PrefixLength": 64,
-          "MAP-EIPv4Prefix": "203.0.113.0",
-          "MAP-EIPv4PrefixLength": 24,
-          "MAP-EEABitLength": 12,
-          "MAP-EPSIDOffset": 4
-        }
-      ]
-    },
-    "DS-Lite": {
-      "aftr": "aftr.example.net"
-    },
-    "LW4o6": {
-      "lwaftr": "lwaftr.example.net",
-      "LW4o6Rules": {
-        "V4V6BINDV6Prefix": "2001:db8:3:100::/56",
-        "V4V6BINDV4ADDRESS": "203.0.113.16",
-        "V4V6BINDPSID": 4
+  "IP4OV6ServiceProviderName": "A VNE",
+  "IP4OV6VNEServiceName": "Highspeed 4over6",
+  "IP4OV6ISPServiceName": "ISP-A",
+  "IP4OV6ISPTTL": 86400,
+  "PriorityConfig": [ "464XLAT", "MAP-E", "DS-Lite" ],
+  "MAP-E": {
+    "MAP-ESupportVersion": 0,
+    "MAP-ETrafficMode": 1,
+    "MAP-EBRAddress": "2001:db8:1::1",
+    "MAP-ERules": [
+      {
+        "MAP-EFMRIPv6Prefix": "2001:db8:1:2::",
+        "MAP-EIPv6PrefixLength": 64,
+        "MAP-EIPv4Prefix": "203.0.113.0",
+        "MAP-EIPv4PrefixLength": 24,
+        "MAP-EEABitLength": 12,
+        "MAP-EPSIDOffset": 4
       }
-    },
-    "MAP-T": {
-      "MAP-TDMRAddress": "2001:db8:5::",
-      "MAP-TDMRPrefixLength": 64,
-      "MAP-TRules": [
-        {
-          "MAP-TFMRIPv6Prefix": "2001:db8:5:100::",
-          "MAP-TIPv6PrefixLength": 56,
-          "MAP-TIPv4Prefix": "203.0.113.32",
-          "MAP-TIPv4PrefixLength": 28,
-          "MAP-TEABitLength": 8,
-          "MAP-TPSIDOffset": 4
-        }
-      ]
-    },
-    "464XLAT": {
-      "nat64prefix": "2001:db8:6::/96"
+    ]
+  },
+  "DS-Lite": {
+    "aftr": "aftr.example.net"
+  },
+  "LW4o6": {
+    "lwaftr": "lwaftr.example.net",
+    "LW4o6Rules": {
+      "V4V6BINDV6Prefix": "2001:db8:3:100::/56",
+      "V4V6BINDV4ADDRESS": "203.0.113.16",
+      "V4V6BINDPSID": 4
     }
+  },
+  "MAP-T": {
+    "MAP-TDMRAddress": "2001:db8:5::",
+    "MAP-TDMRPrefixLength": 64,
+    "MAP-TRules": [
+      {
+        "MAP-TFMRIPv6Prefix": "2001:db8:5:100::",
+        "MAP-TIPv6PrefixLength": 56,
+        "MAP-TIPv4Prefix": "203.0.113.32",
+        "MAP-TIPv4PrefixLength": 28,
+        "MAP-TEABitLength": 8,
+        "MAP-TPSIDOffset": 4
+      }
+    ]
+  },
+  "464XLAT": {
+    "nat64prefix": "2001:db8:6::/96"
   },
   "IPIP": [
     {
@@ -293,9 +291,6 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
 
 Object Value
 
-IP4OV6ProvisioningConfig
-  IPv4 over IPv6プロビジョニングデータ（グループ)
-　
 IP4OV6ServiceProviderName
   NGN上でのサービスではVNE名
   JPNE, IMF, NTTコミュニケーションズ, Biglobe等 NGN以外でのサービスではISP名
