@@ -232,7 +232,6 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
 
 {
   "IP4OV6ProvisioningConfig": {
-    "IP4OV6Method": "MAP-E",
     "IP4OV6ServiceProviderName": "A VNE",
     "IP4OV6VNEServiceName": "Highspeed 4over6",
     "IP4OV6ISPServiceName": "ISP-A",
@@ -297,15 +296,6 @@ Object Value
 IP4OV6ProvisioningConfig
   IPv4 over IPv6プロビジョニングデータ（グループ)
 　
-IP4OV6Method
-  MAP-E : MAP-Eを使用
-  MAP-T : MAP-Tを使用
-  DS-Lite : DS-Liteを使用
-  LW4o6 : Lightweight IPv4 over IPv6を使用
-  464XLAT : 464XLATを使用
-  IPv6-Only : IPv4 over IPv6サービス未サポート ※IPv6 Nativeでのインター
-  ネットサービス使用時のみ。他のIPv4 over IPv6サービスがある場合は、使用禁止
-
 IP4OV6ServiceProviderName
   NGN上でのサービスではVNE名
   JPNE, IMF, NTTコミュニケーションズ, Biglobe等 NGN以外でのサービスではISP名
@@ -325,7 +315,16 @@ IP4OV6ISPTTL
   TTL : プロビ情報の有効期間。単位は秒。
 　
 PriorityConfig
-  優先度設定
+  マイグレーション方式を優先度順に並べたもの。プロビジョニングデータに複数
+  の方式が記述されている場合、CPE は PriorityConfig に記述された順序で各方
+  式の利用を試みる。
+
+  マイグレーション方式には以下の文字列のいずれかを指定する。
+
+    "MAP-E", "MAP-T", "DS-Lite", "LW4o6", "464XLAT", "IPIP"
+
+  なお、CPE は、PriorityConfig の設定によらずユーザが固定的に設定できるモー
+  ドを備えることが望ましい。
 
 MAP-E
   MAP-Eプロビジョニングデータ(グループ)
