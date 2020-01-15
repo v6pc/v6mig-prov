@@ -241,10 +241,9 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
     "MAP-E": {
       "MAP-ESupportVersion": 0,
       "MAP-ETrafficMode": 1,
+      "MAP-EBRAddress": "2001:db8:1::1",
       "MAP-ERules": [
         {
-          "MAP-EDMRAddress": "2001:db8:1::1",
-          "MAP-EDMRPrefixLength": 128,
           "MAP-EFMRIPv6Prefix": "2001:db8:1:2::",
           "MAP-EIPv6PrefixLength": 64,
           "MAP-EIPv4Prefix": "203.0.113.0",
@@ -334,13 +333,20 @@ MAP-E
   MAP-Eプロビジョニングデータ(グループ)
 　
 MAP-ESupportVersion オプション
+  MAP-E プロトコルのバージョンを表す。
+
   0 or 項目なし : draft-ietf-softwire-map-03
   1 : RFC7597
-　
+ 　
 MAP-ETrafficMode
+  RFC7597 に記載の MAP-E の Hub-and-spoke モードと Mesh モードを指定する。
+
   0 or 項目なし : Hub-and-spoke mode (CE - BR only)
   1 : Mesh mode (CE - BR and CE - CE)
 　
+MAP-EBRAddress
+  BR のアドレス。
+
 MAP-ERules
   MAP-Eのルール(グループ)
 
@@ -349,12 +355,6 @@ MAP-ERules
   - 動作要件として、Meshモード時は256ルールで動作すること。(SHOULD)
   　(※性能要件の妥当性はベンダ次第)
 
-MAP-EDMRAddress
-  DMR(BR)のアドレス
-　
-MAP-EDMRPrefixLength
-  DMR(BR)のプリフィックス長
-　
 MAP-EFMRIPv6Prefix
   FMRのIPv6プリフィックス
 　
