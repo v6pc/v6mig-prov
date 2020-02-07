@@ -231,60 +231,54 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
 以下にデータフォーマットを示す。
 
 {
-  "IP4OV6ServiceProviderName": "A VNE",
-  "IP4OV6VNEServiceName": "Highspeed 4over6",
-  "IP4OV6ISPServiceName": "ISP-A",
-  "IP4OV6ISPTTL": 86400,
-  "PriorityConfig": [ "464XLAT", "MAP-E", "DS-Lite" ],
-  "MAP-E": {
-    "MAP-ESupportVersion": 0,
-    "MAP-ETrafficMode": 1,
-    "MAP-EBRAddress": "2001:db8:1::1",
-    "MAP-ERules": [
+  "enabler_name": "A VNE",
+  "service_name": "Highspeed 4over6",
+  "isp_name": "ISP-A",
+  "ttl": 86400,
+  "order": [ "464xlat", "map_e", "dslite" ],
+  "map_e": {
+    "version": 0,
+    "mesh": true,
+    "br": "2001:db8:1::1",
+    "rules": [
       {
-        "MAP-EFMRIPv6Prefix": "2001:db8:1:2::",
-        "MAP-EIPv6PrefixLength": 64,
-        "MAP-EIPv4Prefix": "203.0.113.0",
-        "MAP-EIPv4PrefixLength": 24,
-        "MAP-EEABitLength": 12,
-        "MAP-EPSIDOffset": 4
+        "ipv6": "2001:db8:1:2::/64",
+        "ipv4": "203.0.113.0/24",
+        "ea_length": 12,
+        "psid_offset": 4
       }
     ]
   },
-  "DS-Lite": {
+  "dslite": {
     "aftr": "aftr.example.net"
   },
-  "LW4o6": {
+  "lw4o6": {
     "lwaftr": "lwaftr.example.net",
-    "LW4o6Rules": {
-      "V4V6BINDV6Prefix": "2001:db8:3:100::/56",
-      "V4V6BINDV4ADDRESS": "203.0.113.16",
-      "V4V6BINDPSID": 4
+    "rules": {
+      "ipv6": "2001:db8:3:100::/56",
+      "ipv4": "203.0.113.16",
+      "psid": 4
     }
   },
-  "MAP-T": {
-    "MAP-TDMRAddress": "2001:db8:5::",
-    "MAP-TDMRPrefixLength": 64,
-    "MAP-TRules": [
+  "map_t": {
+    "dmr": "2001:db8:5::/64",
+    "rules": [
       {
-        "MAP-TFMRIPv6Prefix": "2001:db8:5:100::",
-        "MAP-TIPv6PrefixLength": 56,
-        "MAP-TIPv4Prefix": "203.0.113.32",
-        "MAP-TIPv4PrefixLength": 28,
-        "MAP-TEABitLength": 8,
-        "MAP-TPSIDOffset": 4
+        "ipv6": "2001:db8:5:100::/56",
+        "ipv4": "203.0.113.32/28",
+        "ea_length": 8,
+        "psid_offset": 4
       }
     ]
   },
-  "464XLAT": {
+  "464xlat": {
     "nat64prefix": "2001:db8:6::/96"
   },
-  "IPIP": [
+  "ipip": [
     {
-      "IPIPLocalAddress": "2001:db8:7:100::7",
-      "IPIPRemoteAddress": "2001:db8:7::1",
-      "IPIPIPv4Address": "203.0.113.0",
-      "IPIPIPv4Prefix": 29
+      "ipv6_local": "2001:db8:7:100::7",
+      "ipv6_remote": "2001:db8:7::1",
+      "ipv4": "203.0.113.0/29"
     }
   ]
 }
