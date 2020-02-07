@@ -254,11 +254,11 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
   },
   "lw4o6": {
     "lwaftr": "lwaftr.example.net",
-    "rules": {
-      "ipv6": "2001:db8:3:100::/56",
-      "ipv4": "203.0.113.16",
-      "psid": 4
-    }
+    "ipv6": "2001:db8:3:100::/56",
+    "ipv4": "203.0.113.16",
+    "psid": 3,
+    "psid_length": 8,
+    "psid_offset": 6
   },
   "map_t": {
     "dmr": "2001:db8:5::/64",
