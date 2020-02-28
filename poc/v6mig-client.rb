@@ -61,7 +61,7 @@ def dns_lookup()
 end
 
 def parse_location(txt)
-  if txt =~ /v=v6mig url=(http[^ ]+) t=([abc])/
+  if txt =~ /v=v6mig-1 url=(http[^ ]+) t=([abc])/
     return { :url => $1, :type => $2 }
   else
     puts "error: invalid provisioning locator: #{txt}"
