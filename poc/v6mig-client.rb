@@ -167,16 +167,9 @@ def mainloop()
     end
 
     # i)
-
-    top = json["IP4OV6ProvisioningConfig"]
-    unless top
-      puts "error: IP4OV6ProvisioningConfig is missing"
-      exit 1
-    end
-
-    services = top["PriorityConfig"]
+    services = json["order"]
     unless services
-      puts "error: PriorityConfig is missing"
+      puts "error: \"order\" is missing"
       exit 1
     end
 
@@ -185,14 +178,17 @@ def mainloop()
       puts "configuring #{name}"
 
       case name
-      when "DS-Lite"
-        dslite = top[name]
+      when "dslite"
+        dslite = json[name]
         unless dslite
           puts "error: no #{name} config"
           exit 1
         end
-        setup_dslite(dslite["DS-LiteAFTRFQDN"])
+        setup_dslite(dslite["aftr"])
         break
+
+      when "map_e"
+        puts "#{name} is not supported.  skip it."
 
       else
         puts "error: unknown service name \"#{name}\""
@@ -202,8 +198,8 @@ def mainloop()
 
     # l)
     puts "provisioning succeeded"
-    if top.has_key? "IP4OV6ISPTTL"
-      ttl = top["IP4OV6ISPTTL"] / 60.0
+    if json.has_key? "ttl"
+      ttl = json["ttl"] / 60.0
       sleep_retry(ttl, ttl)
     else
       sleep_retry(20*60, 24*60)
