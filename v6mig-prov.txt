@@ -252,19 +252,18 @@ d) https 認証局発行のサーバ証明書を使用
 
 ・capability
   CPE のサポートするマイグレーション技術を送信する。(MUST)
-  サポートする以下のマイグレーション技術を「_」(アンダースコア）で接続した
-  文字列を送信する。
+  サポートする以下のマイグレーション技術を `,` で接続した文字列を送信する。
 
-  MAP-E    CPEはMAP-E方式をサポートする。
-  MAP-T    CPEはMAP-T方式をサポートする。
-  DS-LITE  CPEはDS-Lite方式をサポートする。
-  LW4O6    CPEはLightweight 4over6方式をサポートする。
-  464XLAT  CPEは464XLATをサポートする。
-  IPIP     CPEはIPIPトンネル接続をサポートする。
-  HUBSPOKE CPEはHub&Spoke方式をサポートする。
-  MESH     CPEはMESH方式をサポートする。
+  464xlat  CPE は 464XLAT をサポートする。
+  dslite   CPE は DS-Lite をサポートする。
+  ipip     CPE は IPIP トンネル接続をサポートする。
+  lw4o6    CPE は Lightweight 4over6 をサポートする。
+  map_e    CPE は MAP-E をサポートする。
+  map_t    CPE は MAP-T をサポートする。
+  hubspoke CPE は MAP-E の Hub&Spoke 方式をサポートする。
+  mesh     CPE は MAP-E の MESH 方式をサポートする。
 
-  ex) capability=MAP-E_DS-LITE_LW4O6_HUBSPOKE
+  ex) capability=map_e,dslite,lw4o6,hubspoke
 
 
 ・token
