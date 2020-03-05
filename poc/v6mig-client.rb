@@ -10,6 +10,7 @@ $domain = "v6mig.example.jp"
 $supported_protocol = [ 'DS-Lite', 'IPIP' ]
 $redirect_limit = 5
 $dns_timeout = 5
+$user_agent = 'v6mig-prov poc client'
 
 $cacert = <<CERT  # Let's Encrypt
 -----BEGIN CERTIFICATE-----
@@ -90,7 +91,7 @@ def http_get(loc)
     http.cert_store = make_cert_store()
 
     begin
-      response = http.get(uri.path)
+      response = http.get(uri.path, { 'user-agent' => $user_agent })
       case response.code
       when /^2/
         return response.body
