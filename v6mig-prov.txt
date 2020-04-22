@@ -289,6 +289,7 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
   "service_name": "Highspeed 4over6",
   "isp_name": "ISP-A",
   "ttl": 86400,
+  "token": "640756965820d3b9025b6941f9590af6802830ba58663fe8f043dc92b576f17a",
   "order": [ "464xlat", "map_e", "dslite" ],
   "map_e": {
     "version": 0,
@@ -357,6 +358,13 @@ IP4OV6ISPServiceName オプション
 IP4OV6ISPTTL
   TTL : プロビ情報の有効期間。単位は秒。
 　
+token (オプション)
+  サーバが CPE を識別するためのトークン。
+  token を受け取った CPE は、次回以降のリクエストにおいて token パラメタ
+  を送信することが期待される(3.3節参照)。
+  値は 256 ビット整数を数字と英小文字からなる 16 進数で表した 64 文字の
+  文字列とする。
+
 order
   マイグレーション方式を優先度順に並べたもの。プロビジョニングデータに複
   数の方式が記述されている場合、CPE は order に記述された順序で各方式の
