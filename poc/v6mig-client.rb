@@ -91,7 +91,14 @@ def http_get(loc)
     http.cert_store = make_cert_store()
 
     begin
-      response = http.get(uri.path, { 'user-agent' => $user_agent })
+      qstr = URI.encode_www_form({
+        "vendorid" => "00005e",
+        "product"  => "poc",
+        "version"  => "0_01",
+        "capability" => "map_e,dslite"
+      })
+      target = uri.path + "?" + qstr
+      response = http.get(target, { 'user-agent' => $user_agent })
       case response.code
       when /^2/
         return response.body
@@ -100,6 +107,9 @@ def http_get(loc)
         next
       else
         puts "error: unexpected HTTP response code: #{response.code}"
+        puts ""
+        puts response.body
+        puts ""
         return nil
       end
     rescue OpenSSL::SSL::SSLError => e
