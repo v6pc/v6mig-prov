@@ -7,6 +7,7 @@ require "resolv"
 require "timeout"
 
 $domain = "v6mig.example.jp"
+$version = "0_01"
 $supported_protocol = [ 'DS-Lite', 'IPIP' ]
 $redirect_limit = 5
 $dns_timeout = 5
@@ -96,7 +97,7 @@ def http_get(loc)
       qstr = URI.encode_www_form({
         "vendorid" => "00005e",
         "product"  => "poc",
-        "version"  => "0_01",
+        "version"  => $version,
         "capability" => "map_e,dslite"
       })
       target = uri.path + "?" + qstr
@@ -228,6 +229,7 @@ end
 if __FILE__ == $0  # main routine
   opt = OptionParser.new
   opt.on('--cacert FILENAME') { |v| $cacert = File.read(v) }
+  opt.on('--version VERS') { |v| $version = v }
   #opt.on('--domain DOMAIN') { |v| $domain = v }
   opt.parse!(ARGV)
 
