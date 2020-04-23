@@ -37,6 +37,8 @@ CERT
 
 
 def dns_lookup()
+  return $domain if $domain =~ /^v=v6mig-1 /
+
   puts "provisioning domain name is: #{$domain}"
   txt = nil
 
