@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: json syntax check
-      run: sed -ne '/^{/,/^}/p' < v6mig-prov.txt | jq . >/dev/null
+      run: sed -ne '/^{/,/^}/p' < spec.md | jq . >/dev/null
