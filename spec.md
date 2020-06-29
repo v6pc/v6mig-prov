@@ -2,6 +2,8 @@
 
 IPv6普及・高度化推進協議会 IPv4/IPv6共存WG IPv6家庭用ルータSWG
 
+Copyright (c) IPv6普及・高度化推進協議会\
+本文書はクリエイティブ・コモンズの [「表示 4.0 国際 (CC BY 4.0)」](https://creativecommons.org/licenses/by/4.0/legalcode.ja) により利用が許諾される。
 
 ## 変更履歴
 
