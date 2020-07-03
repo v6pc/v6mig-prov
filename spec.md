@@ -339,20 +339,20 @@ CPE は、JSON オブジェクトの未知のキーは無視してよい(MAY)。
 
 Object Value
 
-- `IP4OV6ServiceProviderName`
+- `enabler_name`
   - NGN上でのサービスではVNE名
     - JPNE, IMF, NTTコミュニケーションズ, Biglobe等
   - NGN以外でのサービスではISP名
     - au、J-COM等
-- `IP4OV6VNEServiceName`
+- `service_name`
   - IPv4 over IPv6 VNEサービス名
   - NGNが指定のサービス名を設定する。
   - NGN
   - NGN以外でのサービスの場合は、設定しないこと。
-- `IP4OV6ISPServiceName` オプション
+- `isp_name` (オプション)
   - IPv4 over IPv6 ISPサービス名
   - IP4OV6VNEServiceName < IP4OV6ISPServiceNameの関係にすること。
-- `IP4OV6ISPTTL`
+- `ttl`
   - TTL : プロビ情報の有効期間。単位は秒。
 - `token` (オプション)
   - サーバが CPE を識別するためのトークン。
@@ -378,84 +378,77 @@ Object Value
     - `464xlat`, `dslite`, `ipip`, `lw4o6`, `map_e`, `map_t`
   - なお、CPE は、order の設定によらずユーザが固定的に設定できるモードを備
     えることが望ましい。
-- `MAP-E`
-  - MAP-Eプロビジョニングデータ(グループ)
-- `MAP-ESupportVersion` オプション
-  - MAP-E プロトコルのバージョンを表す。
+- `map_e` (オプション)
+  - MAP-E プロトコルのパラメータ。
+- map_e / `version` (オプション)
+  - MAP-E プロトコルのバージョン。
     - 0 or 項目なし : draft-ietf-softwire-map-03
     - 1 : RFC7597
-- `MAP-ETrafficMode`
-  - RFC7597 に記載の MAP-E の Hub-and-spoke モードと Mesh モードを指定する。
-    - 0 or 項目なし : Hub-and-spoke mode (CE - BR only)
-    - 1 : Mesh mode (CE - BR and CE - CE)
-- `MAP-EBRAddress`
-  - BR のアドレス。
-- `MAP-ERules`
-  - MAP-Eのルール(グループ)
-  - Hub-Spoke/Meshモード時ともに、フォーマットとしては256ルールを受け入れること(MUST)
-  - Hub-Spokeモード時は、ルールの最大数は256ルールを受け入れること。(MUST)
-  - 動作要件として、Meshモード時は256ルールで動作すること。(SHOULD)
-  　(※性能要件の妥当性はベンダ次第)
-- `MAP-EFMRIPv6Prefix`
+  - 省略した場合は 0 を意味する。
+- map_e / `mesh` (オプション)
+    - RFC7597 に記載の MAP-E の Hub-and-spoke モードと Mesh モードを指定する。
+      - 0 or 項目なし : Hub-and-spoke mode (CE - BR only)
+      - 1 : Mesh mode (CE - BR and CE - CE)
+- map_e / `br`
+    - BR の IPv6 アドレス。
+- map_e / `rules`
+  - MAP-E のルールを表す。
+  - Hub-and-spoke/Mesh モード時ともに、フォーマットとしては256ルールを受け入れること (MUST)。
+  - Hub-Spokeモード時は、ルールの最大数は256ルールを受け入れること (MUST)。
+  - 動作要件として、Meshモード時は256ルールで動作すること (SHOULD)。
+- map_e / rules / `ipv6`
   - FMRのIPv6プリフィックス
-- `MAP-EIPv6PrefixLength`
-  - FMRのIPv6プリフィックス長
-- `MAP-EIPv4Prefix`
+- map_e / rules / `ipv4`
   - FMRのIPv4プリフィックス
-- `MAP-EIPv4PrefixLength`
-  - FMR の IPv4 プリフィックス長
-- `MAP-EEABitLength`
-  - EAビット長
-- `MAP-EPSIDOffset`
+- map_e / rules / `ea_length`
+  - EA ビット長
+- map_e / rules / `psid_offset`
   - PSID オフセット
-- `DS-Lite`
-  - DS-Lite プロビジョニングデータ(グループ)
-- `aftr`
-  - DS-Lite AFTR の DNS 名もしくは IPv6 アドレス。
-- `LW4o6`
-  - lw4o6プロビジョニングデータ(グループ)
-- `LW4o6Rules`
-  - LW4o6のルール(グループ)。ルールの最大数は、活用事例が発生した際に定める。
-- `lwaftr`
+- `dslite` (オプション)
+  - DS-Lite プロトコルのパラメータ。
+- dslite / `aftr`
+  - AFTR の DNS 名もしくは IPv6 アドレス。
+- `lw4o6` (オプション)
+  - Lightweight 4over6 プロトコルのパラメータ。
+- lw4o6 / `lwaftr`
   - lwAFTR の DNS 名もしくは IPv6 アドレス。
-- `V4V6BINDV6Prefix`
+- lw4o6 / `ipv6`
   - Operator Assigned IPv6 Prefix
-- `V4V6BINDV4ADDRESS`
+- lw4o6 / `ipv4`
   - IPv4 external (public) address for NAPT44
-- `V4V6BINDPSID`
+- lw4o6 / `psid`
   - Restricted port set to use for NAPT44
-- `MAP-T`
-  - MAP-Tプロビジョニングデータ(グループ)
-- `MAP-TRules`
-  - MAP-Tのルール(グループ) ルールの最大数は200ルール
-- `MAP-TDMRAddress`
+- lw4o6 / `psid_length`
+  - PSID のビット長
+- lw4o6 / `psid_offset`
+  - PSID オフセット値
+- `map_t` (オプション)
+  - MAP-T プロトコルのパラメータ。
+- map_t / `dmr`
   - DMRのアドレス
-- `MAP-TDMRPrefixLength`
-  - DMRのプリフィックス長
-- `MAP-TFMRIPv6Prefix`
+- map_t / `rules`
+  - MAP-T のルール。
+  - 最大数は 200 ルール。
+- map_t / rules / `ipv6`
   - FMRのIPv6プリフィックス
-- `MAP-TIPv6PrefixLength`
-  - FMRのIPv6プリフィックス長
-- `MAP-TIPv4Prefix`
+- map_t / rules / `ipv4`
   - FMRのIPv4プリフィックス
-- `MAP-TIPv4PrefixLength`
-  - FMRのIPv4プリフィックス長
-- `MAP-TEABitLength`
+- map_t / rules / `ea_length`
   - EAビット長
-- `MAP-TPSIDOffset`
+- map_t / rules / `psid_offset`
   - PSIDオフセット
-- `464XLAT`
-  - 464XLATプロビジョニングデータ(グループ)
-- `nat64prefix`
+- `464xlat` (オプション)
+  - 464XLAT プロトコルのパラメータ。
+- 464xlat / `nat64prefix`
   - NAT64 プレフィックス。
-- `IPIPLocalAddress`
-  - IPIPトンネルの送信元IPv6アドレス
-- `IPIPRemoteAddress`
-  - IPIPトンネルの宛先IPv6アドレス
-- `IPIPIPv4Address`
-  - IPIPトンネルのIPv4固定アドレス
-- `IPIPIPv4Prefix`
-  - IPIPトンネルのIPv4固定アドレスのプレフィックス長
+- `ipip` (オプション)
+  - RFC2473 IPIP トンネルに関するパラメータ。
+- ipip / `ipv6_local`
+  - IPIP トンネルの CPE 側 IPv6 アドレス。
+- ipip / `ipv6_remote`
+  - IPIP トンネルのプロバイダ側 IPv6 アドレス。
+- ipip / `ipv4`
+  - IPIP トンネルの IPv4 固定アドレスとそのプレフィックス長。
 
 
 ### 3.5.  プロビジョニングデータの管理
