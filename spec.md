@@ -353,7 +353,8 @@ Object Value
   - IPv4 over IPv6 ISPサービス名
   - IP4OV6VNEServiceName < IP4OV6ISPServiceNameの関係にすること。
 - `ttl`
-  - TTL : プロビ情報の有効期間。単位は秒。
+  - プロビジョニング情報の有効期間。単位は秒。
+  - 値は 604800 (7日間)以下でなければならない(MUST)。
 - `token` (オプション)
   - サーバが CPE を識別するためのトークン。
   - token を受け取った CPE は、次回以降のリクエストにおいて token パラメータ
