@@ -202,7 +202,7 @@ https を利用する場合は、TLS の server_name 拡張(SNI)を用いてサ�
   - ベンダーOUI、および、任意コード24文字を以下のフォーマットで送信する(MUST)。
     - 「ベンダーOUI(16進数表記6文字)」＋「-」＋「任意文字(0-9,a-z,A-Z,_のみ)最大24文字」
   - ベンダーOUIのみをMUSTとし、ハイフン以降の値の付与は任意とする。
-  - ex) `vendorid=343dc4-aebb198a003e7fce98fe7765bc`
+  - ex) `vendorid=acde48-v6pc_swg_hgw`
 - `product`
   - CPE 本体の製品名を値として送信する(MUST)。
   - 値は ASCII 半角英数字、ハイフン、アンダースコアで構成される 32 文字以下とする。
