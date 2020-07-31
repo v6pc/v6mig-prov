@@ -325,7 +325,7 @@ Object Value
 
 - `enabler_name`
   - NGN 上でのサービスでは VNE 名
-    - JPNE, IMF, NTTコミュニケーションズ, Biglobe等
+    - JPNE, IMF, NTTコミュニケーションズ, BIGLOBE等
   - NGN 以外でのサービスでは ISP 名
     - au、J-COM等
 - `service_name`
