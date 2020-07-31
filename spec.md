@@ -335,7 +335,7 @@ Object Value
   - NGN 以外でのサービスの場合は、設定しないこと。
 - `isp_name` (オプション)
   - IPv4 over IPv6 ISP サービス名
-  - IP4OV6VNEServiceName < IP4OV6ISPServiceName の関係にすること。
+  - `service_name` < `isp_name` の関係にすること。
 - `ttl`
   - プロビジョニング情報の有効期間。単位は秒。
   - 値は 604800 (7日間)以下でなければならない(MUST)。
