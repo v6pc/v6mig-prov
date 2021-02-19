@@ -329,14 +329,17 @@ Object Value
     - JPNE, IMF, NTTコミュニケーションズ, BIGLOBE等
   - NGN 以外でのサービスでは ISP 名
     - au、J-COM等
+  - 両端の `"` を含めて 256 バイト以下の文字列である。
 - `service_name`
   - IPv4 over IPv6 VNE サービス名
   - NGN が指定のサービス名を設定する。
   - NGN
   - NGN 以外でのサービスの場合は、設定しないこと。
+  - 両端の `"` を含めて 256 バイト以下の文字列である。
 - `isp_name` (オプション)
   - IPv4 over IPv6 ISP サービス名
   - `service_name` < `isp_name` の関係にすること。
+  - 両端の `"` を含めて 256 バイト以下の文字列である。
 - `ttl`
   - プロビジョニング情報の有効期間。単位は秒。
   - 値は 604800 (7日間)以下でなければならない(MUST)。
