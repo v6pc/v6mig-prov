@@ -438,7 +438,7 @@ Object Value
 - `464xlat` (オプション)
   - 464XLAT プロトコルのパラメータ。
 - 464xlat / `nat64prefix`
-  - NAT64 プレフィックス。
+  - NAT64 プリフィックス。
 - `ipip` (オプション)
   - RFC2473 IPIP トンネルに関するパラメータ。
 - ipip / `ipv6_local`
@@ -446,7 +446,7 @@ Object Value
 - ipip / `ipv6_remote`
   - IPIP トンネルのプロバイダ側 IPv6 アドレス。
 - ipip / `ipv4`
-  - IPIP トンネルの IPv4 固定アドレスとそのプレフィックス長。
+  - IPIP トンネルの IPv4 固定アドレスとそのプリフィックス長。
 
 
 ### 3.5. プロビジョニングデータの管理
